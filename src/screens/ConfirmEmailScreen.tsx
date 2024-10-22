@@ -16,28 +16,36 @@ import MicrosoftLogin from '../components/MicrosoftLogin';
 import ConfEmSecBtn from '../components/ConfEmSecBtn';
 const windowHeight = Dimensions.get('window').height;
 
-const ConfirmEmailScreen = () => {
-    const [code, setCode] = useState('');
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackParamList } from '../../App';
+type NavigationProps = NativeStackNavigationProp<StackParamList>;
 
+const ConfirmEmailScreen = () => {
+  const [code, setCode] = useState('');
+  const navigation = useNavigation<NavigationProps>();
+
+  function onConfirmPressed() {
+    console.log("code confirm pressed");
+    navigation.navigate('Home');
+  }
+  function onResendPressed() {
+      console.log("code resend pressed");
+  }
+  function onSigninPressed() {
+      console.log("signed in");
+      navigation.navigate('LogIn');
+  }
 
     return (
         <View>
             <Text style={styles.title}>Confirm Email Account</Text>
             <CustomInput1 value = {code} setValue = {setCode} placeholder = "Confirmation Code" secureTextEntry = {false}></CustomInput1>
             <LoginButton1 onPress={onConfirmPressed} text="Confirm" type = "one"></LoginButton1>
-            <ConfEmSecBtn onPress={onSigninPressed} text="Back to Sign In"></ConfEmSecBtn>
             <ConfEmSecBtn onPress={onResendPressed} text="ResendCode"></ConfEmSecBtn>
+            <ConfEmSecBtn onPress={onSigninPressed} text="Back to Sign In"></ConfEmSecBtn>
         </View>
   )
-}
-function onConfirmPressed() {
-    console.log("code confirm pressed");
-}
-function onResendPressed() {
-    console.log("code resend pressed");
-}
-function onSigninPressed() {
-    console.log("signed in");
 }
   
   const styles = StyleSheet.create({

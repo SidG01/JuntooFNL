@@ -20,11 +20,6 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import CustomInput from '../components/customInput';
-import LoginButton from '../components/LoginButton';
-import LoginForgotPass from '../components/loginForgotPass';
-import GoogleLogin from '../components/GoogleLogin';
-import NewAccount from '../components/newAccount';
 import CustomInput1 from '../components/CustomInput1';
 import { useState } from 'react';
 import LoginForgotPass1 from '../components/LoginForgotPass1';
@@ -34,12 +29,40 @@ import NewAccount1 from '../components/NewAccount1';
 import MicrosoftLogin from '../components/MicrosoftLogin';
 const windowHeight = Dimensions.get('window').height;
 
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackParamList } from '../../App';
+type NavigationProps = NativeStackNavigationProp<StackParamList>;
+
 const SignUpScreen1 = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordRepeat, setPasswordRepeat] = useState('');
-    const isDarkMode = useColorScheme() === 'dark';
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const navigation = useNavigation<NavigationProps>();
+
+  function onTermsOfUsePressed() {
+      console.log("signed in");
+  }
+  function onPrivacyPolicyPressed() {
+      console.log("signed in");
+  }
+  function onSigninPressed() {
+      console.log("signed in");
+      navigation.navigate('LogIn');
+  }
+  function onSignUpPressed() {
+      console.log("signed up");
+      navigation.navigate('EmailConfirm');
+  }
+  function onGoogleLoginPressed() {
+      console.log("login with google");
+  }
+  function onMicrosoftLoginPressed() {
+      console.log("login with microsoft");
+  }
 
     return (
         <View>
@@ -56,34 +79,9 @@ const SignUpScreen1 = () => {
              </Text>
             <GoogleLogin1 onPress={onGoogleLoginPressed} text="Sign in with Google"></GoogleLogin1>
             <MicrosoftLogin onPress={onMicrosoftLoginPressed} text="Sign in with Microsoft"></MicrosoftLogin>
-            <NewAccount1 onPress={onNewAccountPressed} text="Create New Account"></NewAccount1>
+            <NewAccount1 onPress={onSigninPressed} text="Have an Account? Sign In"></NewAccount1>
         </View>
   )
-}
-
-function onTermsOfUsePressed() {
-    console.log("signed in");
-}
-function onPrivacyPolicyPressed() {
-    console.log("signed in");
-}
-function onSigninPressed() {
-    console.log("signed in");
-}
-function onSignUpPressed() {
-    console.log("signed up");
-}
-function onForgotPassPressed() {
-    console.log("forgot password");
-}
-function onGoogleLoginPressed() {
-    console.log("login with google");
-}
-function onMicrosoftLoginPressed() {
-    console.log("login with microsoft");
-}
-function onNewAccountPressed() {
-    console.log("New Account");
 }
   
   const styles = StyleSheet.create({

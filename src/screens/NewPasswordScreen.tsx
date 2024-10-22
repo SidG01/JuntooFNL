@@ -16,10 +16,24 @@ import MicrosoftLogin from '../components/MicrosoftLogin';
 import ConfEmSecBtn from '../components/ConfEmSecBtn';
 const windowHeight = Dimensions.get('window').height;
 
-const NewPasswordScreen = () => {
-    const [code, setCode] = useState('');
-    const [newPass, setnewPass] = useState('');
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackParamList } from '../../App';
+type NavigationProps = NativeStackNavigationProp<StackParamList>;
 
+const NewPasswordScreen = () => {
+  const [code, setCode] = useState('');
+  const [newPass, setnewPass] = useState('');
+  const navigation = useNavigation<NavigationProps>();
+
+  function onSubmitPressed() {
+    console.log("code confirm pressed");
+    navigation.navigate('Home');
+  }
+  function onSigninPressed() {
+    console.log("signed in");
+    navigation.navigate('LogIn');
+  }
 
     return (
         <View>
@@ -30,12 +44,6 @@ const NewPasswordScreen = () => {
             <ConfEmSecBtn onPress={onSigninPressed} text="Back to Sign In"></ConfEmSecBtn>
         </View>
   )
-}
-function onSubmitPressed() {
-    console.log("code confirm pressed");
-}
-function onSigninPressed() {
-    console.log("signed in");
 }
   
   const styles = StyleSheet.create({

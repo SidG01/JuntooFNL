@@ -13,18 +13,6 @@ import {
   Dimensions
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import CustomInput from '../components/customInput';
-import LoginButton from '../components/LoginButton';
-import LoginForgotPass from '../components/loginForgotPass';
-import GoogleLogin from '../components/GoogleLogin';
-import NewAccount from '../components/newAccount';
 import CustomInput1 from '../components/CustomInput1';
 import { useState } from 'react';
 import LoginForgotPass1 from '../components/LoginForgotPass1';
@@ -32,15 +20,49 @@ import LoginButton1 from '../components/LoginButton1';
 import GoogleLogin1 from '../components/GoogleLogin1';
 import NewAccount1 from '../components/NewAccount1';
 import MicrosoftLogin from '../components/MicrosoftLogin';
+import HomeScreen from './HomeScreen';
+
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackParamList } from '../../App';
+type NavigationProps = NativeStackNavigationProp<StackParamList>;
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import App from '../../App';
+
+
 const windowHeight = Dimensions.get('window').height;
 
 const LoginScreen1 = () => {
-    const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
+  const navigation = useNavigation<NavigationProps>();
+
+  function onSigninPressed() {
+    console.log("signed in");
+    navigation.navigate('Home');
+  }
+  function onForgotPassPressed() {
+    console.log("forgot password");
+    navigation.navigate('ResetPass')
+  }
+  function onGoogleLoginPressed() {
+    console.log("login with google");
+    // navigation.navigate('Home')
+  }
+  function onMicrosoftLoginPressed() {
+    console.log("login with microsoft");
+    // navigation.navigate('Home')
+  }
+  function onNewAccountPressed() {
+    console.log("New Account");
+    navigation.navigate('SignUp')
+  }
 
   return (
-    <View>
+    <View style={styles.root}>
       <CustomInput1 value = {username} setValue = {setUsername} placeholder = "Username" secureTextEntry = {false}></CustomInput1>
       <CustomInput1 value = {password} setValue = {setPassword} placeholder = "Password" secureTextEntry = {true}></CustomInput1>
       <LoginButton1 onPress={onSigninPressed} text="Sign In" type = "one"></LoginButton1>
@@ -52,28 +74,11 @@ const LoginScreen1 = () => {
   )
 }
 
-function onSigninPressed() {
-    console.log("signed in");
-  }
-  function onForgotPassPressed() {
-    console.log("forgot password");
-  }
-  function onGoogleLoginPressed() {
-    console.log("login with google");
-  }
-  function onMicrosoftLoginPressed() {
-    console.log("login with microsoft");
-  }
-  function onNewAccountPressed() {
-    console.log("New Account");
-  }
   
   const styles = StyleSheet.create({
       root: {
-        alignItems: 'center',
-        padding: 20,
-        width: '100%',
-        height: '100%'
+        paddingVertical: '30%'  
+        
       },
       logo: {
           maxWidth: 400,

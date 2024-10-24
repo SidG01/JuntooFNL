@@ -10,6 +10,7 @@ import {
   View,
   Image,
   useWindowDimensions,
+  TextInput,
   Dimensions
 } from 'react-native';
 
@@ -30,7 +31,7 @@ type NavigationProps = NativeStackNavigationProp<StackParamList>;
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import App from '../../App';
-
+import { useForm, Controller } from 'react-hook-form';
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -39,8 +40,10 @@ const LoginScreen1 = () => {
   const [password, setPassword] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
   const navigation = useNavigation<NavigationProps>();
+  const {control, handleSubmit, formState: {errors}} = useForm();
 
-  function onSigninPressed() {
+  function onSigninPressed(data: any) {
+    console.log(data);
     console.log("signed in");
     navigation.navigate('Home');
   }
@@ -63,9 +66,21 @@ const LoginScreen1 = () => {
 
   return (
     <View style={styles.root}>
-      <CustomInput1 value = {username} setValue = {setUsername} placeholder = "Username" secureTextEntry = {false}></CustomInput1>
-      <CustomInput1 value = {password} setValue = {setPassword} placeholder = "Password" secureTextEntry = {true}></CustomInput1>
-      <LoginButton1 onPress={onSigninPressed} text="Sign In" type = "one"></LoginButton1>
+      <CustomInput1 name='Username' rules={{required: '** Username is Required **', 
+        minLength: {value: 5, message: 'Username is less than 5 characters'}}} 
+        control={control} placeholder = "Username" secureTextEntry = {false}></CustomInput1>
+      <CustomInput1 name='Password' rules={{required: '** Password is Required **', 
+        minLength: {value: 8, message: 'Password is less than 8 characters'}}} 
+        control={control} placeholder = "Password" secureTextEntry = {true}></CustomInput1>
+
+      {/* <Controller control={control} name='username' render={({field: {value, onChange, onBlur}}) => (
+        <TextInput value={value} onChangeText={onChange} onBlur={onBlur} placeholder='username' style={{alignSelf: 'center'}}></TextInput>
+        )}></Controller>
+      <Controller control={control} name='password' render={({field: {value, onChange, onBlur}}) => (
+        <TextInput value={value} onChangeText={onChange} onBlur={onBlur} placeholder='password' style={{alignSelf: 'center'}}></TextInput>
+        )}></Controller> */}
+
+      <LoginButton1 onPress={handleSubmit(onSigninPressed)} text="Sign In" type = "one"></LoginButton1>
       <LoginForgotPass1 onPress={onForgotPassPressed} text="Forgot Password?"></LoginForgotPass1>
       <GoogleLogin1 onPress={onGoogleLoginPressed} text="Sign in with Google"></GoogleLogin1>
       <MicrosoftLogin onPress={onMicrosoftLoginPressed} text="Sign in with Microsoft"></MicrosoftLogin>

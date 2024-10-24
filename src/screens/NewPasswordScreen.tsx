@@ -20,14 +20,17 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../App';
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
+import { useForm } from 'react-hook-form';
 
 const NewPasswordScreen = () => {
   const [code, setCode] = useState('');
   const [newPass, setnewPass] = useState('');
   const navigation = useNavigation<NavigationProps>();
+  const {control, handleSubmit, watch} = useForm();
+  const pass = watch('newPass')
 
-  function onSubmitPressed() {
-    console.log("code confirm pressed");
+  function onSubmitPressed(data: any) {
+    console.log(data);
     navigation.navigate('Home');
   }
   function onSigninPressed() {
@@ -38,9 +41,13 @@ const NewPasswordScreen = () => {
     return (
         <View>
             <Text style={styles.title}>Reset Password</Text>
-            <CustomInput1 value = {code} setValue = {setCode} placeholder = "Enter Code" secureTextEntry = {false}></CustomInput1>
-            <CustomInput1 value = {newPass} setValue = {setnewPass} placeholder = "Enter newPassword" secureTextEntry = {false}></CustomInput1>
-            <LoginButton1 onPress={onSubmitPressed} text="Submit" type = "one"></LoginButton1>
+            <CustomInput1 name="code" control={control} placeholder = "Enter Code" secureTextEntry = {false}
+            rules={{required: "Invalid Code"}}></CustomInput1>
+            <CustomInput1 name="newPass" control={control} placeholder = "Enter newPassword" secureTextEntry = {true  }
+            rules={{minLength: {required: '** Password is Required **', value: 8, message: "Password is less than 8 characters"}}}></CustomInput1>
+            <CustomInput1 name= 'password-repeat' control={control} placeholder = "Repeat Password" secureTextEntry = {true}
+            rules={{required: '** Please Repeat Password **', validate: (value: string) => value === pass || 'Passwords do NOT match',}}></CustomInput1>
+            <LoginButton1 onPress={handleSubmit(onSubmitPressed)} text="Submit" type = "one"></LoginButton1>
             <ConfEmSecBtn onPress={onSigninPressed} text="Back to Sign In"></ConfEmSecBtn>
         </View>
   )

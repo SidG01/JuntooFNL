@@ -19,9 +19,9 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="LogIn" component={LoginScreen1} />
+        {/* <Stack.Screen name="LogIn" component={LoginScreen1} /> */}
         {/* <Stack.Screen name="EmailConfirm" component={ConfirmEmailScreen} /> */}
-        {/* <Stack.Screen name="NewPass" component={NewPasswordScreen} /> */}
+        <Stack.Screen name="NewPass" component={NewPasswordScreen} />
         {/* <Stack.Screen name="ResetPass" component={ResetPassScreen} /> */}
         {/* <Stack.Screen name="SignUp" component={SignUpScreen1} /> */}
         {/* <Stack.Screen name="Home" component={HomeScreen} /> */}

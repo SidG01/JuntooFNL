@@ -20,13 +20,15 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../App';
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
+import { useForm } from 'react-hook-form';
 
 const ResetPassScreen = () => {
   const [username, setUsername] = useState('');
   const navigation = useNavigation<NavigationProps>();
+  const {control, handleSubmit} = useForm();
 
-  function onSendPressed() {
-     console.log("code confirm pressed");
+  function onSendPressed(data: any) {
+     console.log(data);
      navigation.navigate('NewPass');
   }
   function onSigninPressed() {
@@ -38,8 +40,9 @@ const ResetPassScreen = () => {
     return (
         <View>
             <Text style={styles.title}>Reset Password</Text>
-            <CustomInput1 value = {username} setValue = {setUsername} placeholder = "Username" secureTextEntry = {false}></CustomInput1>
-            <LoginButton1 onPress={onSendPressed} text="Send" type = "one"></LoginButton1>
+            <CustomInput1 name = "username" control={control} placeholder = "Username" secureTextEntry = {false}
+            rules={{required: "Please enter your username"}}></CustomInput1>
+            <LoginButton1 onPress={handleSubmit(onSendPressed)} text="Send" type = "one"></LoginButton1>
             <ConfEmSecBtn onPress={onSigninPressed} text="Back to Sign In"></ConfEmSecBtn>
         </View>
   )

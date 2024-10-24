@@ -20,13 +20,16 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../App';
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
+import { useForm } from 'react-hook-form';
+const Email_RegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 const ConfirmEmailScreen = () => {
   const [code, setCode] = useState('');
   const navigation = useNavigation<NavigationProps>();
+  const {control, handleSubmit} = useForm();
 
-  function onConfirmPressed() {
-    console.log("code confirm pressed");
+  function onConfirmPressed(data: any) {
+    console.log(data);
     navigation.navigate('Home');
   }
   function onResendPressed() {
@@ -40,8 +43,9 @@ const ConfirmEmailScreen = () => {
     return (
         <View>
             <Text style={styles.title}>Confirm Email Account</Text>
-            <CustomInput1 value = {code} setValue = {setCode} placeholder = "Confirmation Code" secureTextEntry = {false}></CustomInput1>
-            <LoginButton1 onPress={onConfirmPressed} text="Confirm" type = "one"></LoginButton1>
+            <CustomInput1 name = "code" control = {control} placeholder = "Confirmation Code" secureTextEntry = {false}
+            rules={{required: 'Invalid Code',}}></CustomInput1>
+            <LoginButton1 onPress={handleSubmit(onConfirmPressed)} text="Confirm" type = "one"></LoginButton1>
             <ConfEmSecBtn onPress={onResendPressed} text="ResendCode"></ConfEmSecBtn>
             <ConfEmSecBtn onPress={onSigninPressed} text="Back to Sign In"></ConfEmSecBtn>
         </View>

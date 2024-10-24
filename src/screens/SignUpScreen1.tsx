@@ -28,11 +28,14 @@ import GoogleLogin1 from '../components/GoogleLogin1';
 import NewAccount1 from '../components/NewAccount1';
 import MicrosoftLogin from '../components/MicrosoftLogin';
 const windowHeight = Dimensions.get('window').height;
+import { useForm, Controller } from 'react-hook-form';
 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../App';
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
+
+const Email_RegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 const SignUpScreen1 = () => {
   const [username, setUsername] = useState('');
@@ -40,6 +43,8 @@ const SignUpScreen1 = () => {
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
+  const {control, handleSubmit, formState: {errors}, watch} = useForm();
+  const pass = watch('password')
 
   const navigation = useNavigation<NavigationProps>();
 
@@ -67,12 +72,19 @@ const SignUpScreen1 = () => {
     return (
         <View>
             <Text style={styles.title}>Create an Account</Text>
-            <CustomInput1 value = {username} setValue = {setUsername} placeholder = "Username" secureTextEntry = {false}></CustomInput1>
-            <CustomInput1 value = {email} setValue = {setEmail} placeholder = "Email" secureTextEntry = {false}></CustomInput1>
-            <CustomInput1 value = {password} setValue = {setPassword} placeholder = "Password" secureTextEntry = {true}></CustomInput1>
-            <CustomInput1 value = {passwordRepeat} setValue = {setPasswordRepeat} placeholder = "Repeat Password" secureTextEntry = {true}></CustomInput1>
-            <LoginButton1 onPress={onSignUpPressed} text="Sign Up" type = "one"></LoginButton1>
-            <Text style={styles.text}>By signing up, you confirm that you accept our 
+            <CustomInput1 name= 'username' control={control} placeholder = "Username" secureTextEntry = {false} 
+            rules={{required: '** Username is Required **', minLength: {value: 5, message: "Username is less than 5 characters"}, 
+            maxLength: {value: 15, message: "Username is more than 5 characters"}}}></CustomInput1>
+            <CustomInput1 name= 'email' control={control} placeholder = "Email" secureTextEntry = {false} 
+            rules={{required: '** Email is Required **', pattern: {value: Email_RegEx, message: 'Email is Invalid'}}}></CustomInput1>
+            <CustomInput1 name= 'password' control={control} placeholder = "Password" secureTextEntry = {true} 
+            rules={{required: '** Password is Required **', minLength: {value: 8, message: "Password is less than 8 characters"}}}></CustomInput1>
+            <CustomInput1 name= 'password-repeat' control={control} placeholder = "Repeat Password" secureTextEntry = {true}
+            rules={{required: '** Please Repeat Password **', validate: (value: string) => value === pass || 'Passwords do NOT match',}}></CustomInput1>
+            
+            <LoginButton1 onPress={handleSubmit(onSignUpPressed)} text="Sign Up" type = "one"></LoginButton1>
+            
+            <Text style={styles.text}>By signing up, you confirm that you accept our
                 <Text style={styles.link} onPress={onTermsOfUsePressed}>Terms of Use</Text>
              and 
                 <Text style={styles.link} onPress={onPrivacyPolicyPressed}>Privacy Policy</Text>

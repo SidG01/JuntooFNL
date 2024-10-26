@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-juntoo-staging-cb0fe-authRole",
+      "UnauthRoleArn": "arn:aws:iam::783764577295:role/amplify-juntoo-staging-cb0fe-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::783764577295:role/amplify-juntoo-staging-cb0fe-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-juntoo-staging-cb0fe-deployment",
+      "UnauthRoleName": "amplify-juntoo-staging-cb0fe-unauthRole",
+      "StackName": "amplify-juntoo-staging-cb0fe",
+      "StackId": "arn:aws:cloudformation:us-east-1:783764577295:stack/amplify-juntoo-staging-cb0fe/fffe8960-92fc-11ef-bc69-12ab3e991687",
+      "AmplifyAppId": "d52883dhxivud"
+    },
+    "categories": {
+      "auth": {
+        "Juntoo": {}
+      }
+    }
+  }
+}

@@ -70,11 +70,15 @@ const SignUpScreen1 = () => {
   }
 
     return (
+      <SafeAreaView>
         <View>
             <Text style={styles.title}>Create an Account</Text>
+            <CustomInput1 name= 'name' control={control} placeholder = "Full Name" secureTextEntry = {false} 
+            rules={{required: '** Full Name is Required **', 
+            maxLength: {value: 30, message: "Name is more than 30 characters"}}}></CustomInput1>
             <CustomInput1 name= 'username' control={control} placeholder = "Username" secureTextEntry = {false} 
             rules={{required: '** Username is Required **', minLength: {value: 5, message: "Username is less than 5 characters"}, 
-            maxLength: {value: 15, message: "Username is more than 5 characters"}}}></CustomInput1>
+            maxLength: {value: 15, message: "Username is more than 15 characters"}}}></CustomInput1>
             <CustomInput1 name= 'email' control={control} placeholder = "Email" secureTextEntry = {false} 
             rules={{required: '** Email is Required **', pattern: {value: Email_RegEx, message: 'Email is Invalid'}}}></CustomInput1>
             <CustomInput1 name= 'password' control={control} placeholder = "Password" secureTextEntry = {true} 
@@ -89,10 +93,9 @@ const SignUpScreen1 = () => {
              and 
                 <Text style={styles.link} onPress={onPrivacyPolicyPressed}>Privacy Policy</Text>
              </Text>
-            <GoogleLogin1 onPress={onGoogleLoginPressed} text="Sign in with Google"></GoogleLogin1>
-            <MicrosoftLogin onPress={onMicrosoftLoginPressed} text="Sign in with Microsoft"></MicrosoftLogin>
             <NewAccount1 onPress={onSigninPressed} text="Have an Account? Sign In"></NewAccount1>
         </View>
+        </SafeAreaView>
   )
 }
   
@@ -104,6 +107,7 @@ const SignUpScreen1 = () => {
         height: '100%'
       },
       title: {
+        
         alignSelf: 'center',
         fontSize: 24,
         fontWeight: 'bold',

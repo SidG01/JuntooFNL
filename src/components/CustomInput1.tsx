@@ -13,7 +13,7 @@ const CustomInput1 = ({control, name, rules={}, placeholder, secureTextEntry}:{[
         <TextInput value={value} onChangeText={onChange} onBlur={onBlur} placeholder={placeholder} style={[styles.input, {}]} secureTextEntry={secureTextEntry}></TextInput>
         </View>
         {error && (
-          <Text style={{color: 'red', alignSelf: 'stretch', padding: '3%'}}>{error.message || '*Required Field'}</Text>
+          <Text style={{color: 'red', alignSelf: 'stretch', padding: '2.5%'}}>{error.message || '** Required Field **'}</Text>
         )}
         </>
         )}>

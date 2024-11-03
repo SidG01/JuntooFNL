@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     container: {
         alignSelf: 'center',
-        padding: '3.5%',
+        padding: '3%',
         width: '90%',
         marginVertical: 10,
         borderRadius: 13,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'grey',
         textAlign: 'center',
-        paddingVertical: 5,
+        paddingVertical: 0,
         fontSize: 20,
     },
     });

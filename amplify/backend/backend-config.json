@@ -18,10 +18,13 @@
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
+          "NAME",
           "EMAIL",
-          "NAME"
+          "PHONE_NUMBER"
         ],
-        "socialProviders": [],
+        "socialProviders": [
+          "GOOGLE"
+        ],
         "usernameAttributes": [],
         "verificationMechanisms": [
           "EMAIL"

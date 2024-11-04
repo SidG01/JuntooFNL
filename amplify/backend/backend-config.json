@@ -1,6 +1,6 @@
 {
   "auth": {
-    "Juntoo": {
+    "Juntoofnl": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -20,12 +20,12 @@
         "signupAttributes": [
           "NAME",
           "EMAIL",
-          "PHONE_NUMBER"
+          "PREFERRED_USERNAME"
         ],
-        "socialProviders": [
-          "GOOGLE"
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
         ],
-        "usernameAttributes": [],
         "verificationMechanisms": [
           "EMAIL"
         ]

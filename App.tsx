@@ -13,12 +13,9 @@ import ResetPassScreen from './src/screens/ResetPassScreen';
 import SignUpScreen1 from './src/screens/SignUpScreen1';
 import HomeScreen from './src/screens/HomeScreen';
 import { Amplify } from 'aws-amplify';
-import config from './src/aws-exports'
-import { withAuthenticator } from '@aws-amplify/ui-react-native';
-
-
-
+import config from './src/aws-exports';
 Amplify.configure(config);
+import { withAuthenticator } from '@aws-amplify/ui-react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,11 +23,11 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        {/* <Stack.Screen name="LogIn" component={LoginScreen1} /> */}
-        {/* <Stack.Screen name="EmailConfirm" component={ConfirmEmailScreen} /> */}
-        {/* <Stack.Screen name="NewPass" component={NewPasswordScreen} /> */}
-        {/* <Stack.Screen name="ResetPass" component={ResetPassScreen} /> */}
-        {/* <Stack.Screen name="SignUp" component={SignUpScreen1} /> */}
+        <Stack.Screen name="LogIn" component={LoginScreen1} />
+        <Stack.Screen name="EmailConfirm" component={ConfirmEmailScreen} />
+        <Stack.Screen name="NewPass" component={NewPasswordScreen} />
+        <Stack.Screen name="ResetPass" component={ResetPassScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen1} />
         <Stack.Screen name="Home" component={HomeScreen} />
 
       </Stack.Navigator>

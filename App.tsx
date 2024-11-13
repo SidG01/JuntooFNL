@@ -12,6 +12,11 @@ import NewPasswordScreen from './src/screens/NewPasswordScreen';
 import ResetPassScreen from './src/screens/ResetPassScreen';
 import SignUpScreen1 from './src/screens/SignUpScreen1';
 import HomeScreen from './src/screens/HomeScreen';
+import BottomTabNavigator from './src/screens/BottomTabNavigator';
+import ChatScreen from './src/screens/ChatScreen';
+import Discover from './src/screens/Discover';
+import LiveMapScreen from './src/screens/LiveMapScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 import { Amplify } from 'aws-amplify';
 import config from './src/aws-exports';
 Amplify.configure(config);
@@ -23,12 +28,16 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="LogIn" component={LoginScreen1} />
-        <Stack.Screen name="EmailConfirm" component={ConfirmEmailScreen} />
-        <Stack.Screen name="NewPass" component={NewPasswordScreen} />
-        <Stack.Screen name="ResetPass" component={ResetPassScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen1} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        {/* <Stack.Screen name="LogIn" component={LoginScreen1} /> */}
+        {/* <Stack.Screen name="EmailConfirm" component={ConfirmEmailScreen} /> */}
+        {/* <Stack.Screen name="NewPass" component={NewPasswordScreen} /> */}
+        {/* <Stack.Screen name="ResetPass" component={ResetPassScreen} /> */}
+        {/* <Stack.Screen name="SignUp" component={SignUpScreen1} /> */}
+        <Stack.Screen name="HomeTab" component={BottomTabNavigator} />
+        {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
+        {/* <Stack.Screen name="Chat" component={ChatScreen} /> */}
+        {/* <Stack.Screen name="Map" component={LiveMapScreen} /> */}
+        {/* <Stack.Screen name="Discover" component={ProfileScreen} /> */}
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -41,6 +50,10 @@ export type StackParamList = {
   ResetPass: undefined;
   SignUp: undefined;
   Home: undefined;
+  BottomTab: undefined;
+  Chat: undefined;
+  Discover: undefined;
+  Map: undefined;
 };
 
 

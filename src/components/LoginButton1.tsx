@@ -24,8 +24,8 @@ const LoginButton1 = ({onPress, text}:{[key:string]:any}) => {
   return (
     <View>
       <Pressable onPress={onPress} style={[styles.container]}>
-            <Text style={styles.text}>{text}</Text>
-        </Pressable>
+        <Text style={styles.text}>{text}</Text>
+      </Pressable>
     </View>
   )
 }

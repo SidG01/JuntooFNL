@@ -1,24 +1,24 @@
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
-import IconButton from '../components/IconButton'
-
+import { SafeAreaView } from 'react-native-safe-area-context'
+import IconButton from '../components/IconButton';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../App';
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
-
-const Notifications = () => {
+  
+const Settings = () => {
   const navigation = useNavigation<NavigationProps>();
   function BackPressed() {
-    console.log("Notitotab");
+    console.log("setingtotab");
     navigation.navigate('HomeTab');
   }
   return (
     <SafeAreaView>
-      <View style={styles.header}>
-        <IconButton onPress={BackPressed} text="Back" />
-        <Text style={styles.title}>Notifications</Text>
-      </View>
+    <View style={styles.header}>
+    <IconButton onPress={BackPressed} text="Back" />
+      <Text style={styles.title}>Settings</Text>
+    </View>
     </SafeAreaView>
   )
 }
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 10,
     marginTop: 10,
-    marginLeft: 20,
+    marginLeft: 10,
   },
   title: {
     color: "black",
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
   }
  })
 
-export default Notifications
+export default Settings

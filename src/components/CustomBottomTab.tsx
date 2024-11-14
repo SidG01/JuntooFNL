@@ -48,7 +48,7 @@ const CustomBottomTabs = ({state, descriptors, navigation}: BottomTabBarProps) =
           style={{flex: 1}}
           >
             <View style={styles.contentContainer}>
-              <BottomTabIcon route={route.name} isFocused={isFocused} />
+              {/* <BottomTabIcon route={route.name} isFocused={isFocused} /> */}
             <Text style={{color: isFocused ? '#0067FF' : 'white', fontSize: 12}}>
               {route.name}
             </Text>

@@ -1,7 +1,7 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Settings } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -17,10 +17,14 @@ import ChatScreen from './src/screens/ChatScreen';
 import Discover from './src/screens/Discover';
 import LiveMapScreen from './src/screens/LiveMapScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import Notifications from './src/screens/Notifications';
+import SettingScreen from './src/screens/SettingScreen';
+import CreatePostScreen from './src/screens/CreatePostScreen';
 import { Amplify } from 'aws-amplify';
 import config from './src/aws-exports';
 Amplify.configure(config);
 import { withAuthenticator } from '@aws-amplify/ui-react-native';
+import ProfileHome from './src/screens/ProfileHome';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +42,11 @@ function App() {
         {/* <Stack.Screen name="Chat" component={ChatScreen} /> */}
         {/* <Stack.Screen name="Map" component={LiveMapScreen} /> */}
         {/* <Stack.Screen name="Discover" component={ProfileScreen} /> */}
+        <Stack.Screen name="Noti" component={Notifications} />
+        <Stack.Screen name="Setting" component={SettingScreen} />
+        <Stack.Screen name="createPost" component={CreatePostScreen} />
+        <Stack.Screen name="ProfileHome" component={ProfileHome} />
+        <Stack.Screen name="ProfileEdit" component={ProfileScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -50,10 +59,15 @@ export type StackParamList = {
   ResetPass: undefined;
   SignUp: undefined;
   Home: undefined;
-  BottomTab: undefined;
+  HomeTab: undefined;
   Chat: undefined;
   Discover: undefined;
   Map: undefined;
+  Noti: undefined;
+  Setting: undefined;
+  createPost: undefined;
+  ProfileHome: undefined;
+  ProfileEdit: undefined;
 };
 
 

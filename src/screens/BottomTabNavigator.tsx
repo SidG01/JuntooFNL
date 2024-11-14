@@ -4,6 +4,8 @@ import HomeScreen from './HomeScreen'
 import ChatScreen from './ChatScreen'
 import Discover from './Discover'
 import LiveMapScreen from './LiveMapScreen'
+import ProfileScreen from './ProfileScreen'
+import ProfileHome from './ProfileHome'
 import { NavigationContainer } from '@react-navigation/native'
 import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CustomBottomTab from '../components/CustomBottomTab'
@@ -16,12 +18,14 @@ const CustomBottomTabs = (props: BottomTabBarProps) =>  {
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
+    initialRouteName="Home"
     tabBar={CustomBottomTabs}
     screenOptions={{headerShown: false}}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Chat" component={ChatScreen} />
-      <Tab.Screen name="Discover" component={Discover} />
       <Tab.Screen name="Map" component={LiveMapScreen} />
+      <Tab.Screen name="Chat" component={ChatScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Discover" component={Discover} />
+      <Tab.Screen name="Profile" component={ProfileHome} />
     </Tab.Navigator>
     
   )
@@ -31,6 +35,7 @@ export type BottomTabParamList = {
   Chat: undefined;
   Discover: undefined;
   Map: undefined;
+  Profile: undefined;
 }
 
 export default BottomTabNavigator

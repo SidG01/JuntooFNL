@@ -2,24 +2,12 @@ import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
   View,
-  Image,
-  useWindowDimensions,
   Dimensions
 } from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 import CustomInput1 from '../components/CustomInput1';
 import { useState } from 'react';
 import LoginForgotPass1 from '../components/LoginForgotPass1';
